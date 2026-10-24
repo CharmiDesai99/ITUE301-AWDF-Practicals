@@ -31,3 +31,9 @@ friend_reference/
 *24CE043*
 *.docx
 *.doc
+docx_images/
+docx_extracted_text.txt
+pdf_text.txt
+PRACTICALS_7_TO_12_COMPLETE_GUIDE.md
+/package.json
+/package-lock.json
