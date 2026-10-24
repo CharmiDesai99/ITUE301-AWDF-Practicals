@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+*/node_modules/
+*/*/node_modules/
+
+# Production Build Artifacts
+dist/
+*/dist/
+*/*/dist/
+
+# Environment Variables & Secrets (Crucial: never commit JWT secrets or database URIs)
+.env
+*/.env
+*/*/.env
+*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+*.log
+
+# OS & Editor Files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.agents/

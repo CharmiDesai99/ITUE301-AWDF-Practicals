@@ -1,0 +1,43 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    name: Build & Test Task Management API
+    runs-on: ubuntu-latest
+
+    services:
+      # Spin up MongoDB service container for live database integration tests
+      mongodb:
+        image: mongo:latest
+        ports:
+          - 27017:27017
+
+    steps:
+      - name: Checkout Repository Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Runtime
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+          cache-dependency-path: 'task-manager-api/package-lock.json'
+
+      - name: Install Dependencies
+        working-directory: ./task-manager-api
+        run: npm install
+
+      - name: Run Automated Test Suite
+        working-directory: ./task-manager-api
+        env:
+          PORT: 5000
+          MONGO_URI: mongodb://localhost:27017/task_manager_api_test
+          JWT_SECRET: super_secret_jwt_key_practical7_2026
+          NODE_ENV: test
+        run: npm test
